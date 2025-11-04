@@ -10,7 +10,7 @@
 <?php 
 // //$_GET $_POST $_REQUEST
 // echo "<pre>";
-// print_r($_REQUEST);
+print_r($_REQUEST);
 // echo "</pre>";
 
 if(isset($_GET['submit'])){

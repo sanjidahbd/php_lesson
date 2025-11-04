@@ -24,7 +24,7 @@ class Fruit{
 
 
 }
-  $obj1 = new Fruit;
+  $obj1 = new Fruit ;
   $obj1->set_name("Apple");
   $obj1->set_color("Red");
   $obj1->get_name_color();
