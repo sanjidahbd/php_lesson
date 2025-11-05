@@ -17,10 +17,10 @@
 
 <h2>Form Validation</h2>
     <form action="" method="REQUEST">
-        Name:
-<input type="text" name="name" placeholder="Enter Your Name"><br><br>
+    Name:
+<input type="text" name="name" placeholder="Enter Your Name" value="<?php if(isset($_REQUEST['name'])){echo $_REQUEST['name'];} ?>"><br><br>
 Email Address:
-<input type="email" name="email" placeholder="Enter Your Email"><br><br>
+<input type="email" name="email" placeholder="Enter Your Email" value="<?php if(isset($_REQUEST['email'])){echo $_REQUEST['email'];} ?>"><br><br>
 Skills:
 <select  name="skills[]" multiple="multiple">
     <option value="c#">C#</option>
@@ -41,7 +41,7 @@ Language:
 
     <?php 
     if(isset($_REQUEST['submit'])){
-        $skills_output ="";
+        $skills_output =""; //skills output variable
         $langs_output ="";
         $errors = array();
         //name
