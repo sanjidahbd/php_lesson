@@ -19,6 +19,9 @@ elseif ($num>40) {
 else{
     echo "Fail";
 }
+
+
+
 ?>
 
 

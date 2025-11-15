@@ -14,5 +14,12 @@ echo hello;
  const Name = "Sanjida<br>";
  const Age = 20 ;
  echo "Name:" . Name . "Age:" . Age;
+
+
  
  ?>
+
+
+
+
+ 
