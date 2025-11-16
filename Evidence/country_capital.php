@@ -5,7 +5,7 @@ $countries =["Bangladesh"=>"Dhaka","India"=>"Delhi","Pakistant"=>"Islamabad","Ne
 foreach($countries as $key=>$value){
    
     echo"<pre>";
-    echo "$key = $value";
+    echo "$key => $value";
  
 
 }

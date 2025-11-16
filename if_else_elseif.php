@@ -1,19 +1,19 @@
 <?php
-$num = 60;
+$num = 40;
 
 
 
-if ($num>80) {
+if ($num>=80) {
   echo $num . "Excellent";
 }
-elseif ($num>70) {
+elseif ($num>=70) {
     echo $num . "Good";
 }
 
-elseif($num>50) {
+elseif($num>=50) {
     echo $num . "so so";
 }
-elseif ($num>40) {
+elseif ($num>=40) {
     echo $num . "pass";
 }
 else{
