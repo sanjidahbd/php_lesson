@@ -1,5 +1,6 @@
 
 <?php include_once("../inc/config.php");
+session_start();
 Session_start();
 if(!isset($_SESSION['loggedin'])){
   header("Location:index.php");
@@ -48,6 +49,16 @@ if(!isset($_SESSION['loggedin'])){
         </div>
       </div><!-- /.container-fluid -->
     </section>
+      <?php 
+       $id=$_REQUEST['stid'];
+        $sql="SELECT * FROM students WHERE employeeID='$id'";
+        $db->query($sql);
+        $rawdata=$db->query($sql);
+       $row= $rawdata->fetch_object();
+     
+    
+    
+    ?>
 
     <!-- Main content -->
     <section class="content">
@@ -57,27 +68,17 @@ if(!isset($_SESSION['loggedin'])){
           <div class="col-md-12">
             <!-- jquery validation -->
               <?php 
-                if(isset($_POST['submit'])){
+                if(isset($_POST['update'])){
                   extract($_POST);
-           
-
-               if(isset($_FILES['photo'])){
-                $photo_name = $_FILES['photo']['name'];
-               $tmp_name = $_FILES['photo']['tmp_name'];
-               $upload_url="students/uploads/".$photo_name;
-            
-                  move_uploaded_file($tmp_name,"uploads/".$photo_name);
-
-
-               }
-            
-
-
-                  $sql="INSERT INTO students VALUES (NULL,'$fname','$lname','$dob','$notes','$upload_url')";
+                  $sql="UPDATE students SET first_name='$fname',last_name='$lname',birthdate='$dob',notes='$notes' WHERE employeeID='$id'";
                  
                   $db->query($sql);
                  if($db->affected_rows){
-                  echo '<div class="alert alert-success"> Successfully Inserted </div>';
+
+                  
+                  $_SESSION['msg']="Sucessfully Update";
+                  header("Location:index.php");
+                  // echo '<div class="alert alert-success"> Successfully Inserted </div>';
                  }
                 }
                 
@@ -91,36 +92,30 @@ if(!isset($_SESSION['loggedin'])){
               <!-- /.card-header -->
               
               <!-- form start -->
-              <form id="quickForm" action="" method="post" enctype="multipart/form-data">
+              <form id="quickForm" action="" method="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">First Name</label>
-                    <input type="text" name="fname" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Firstname">
+                    <input type="text" name="fname" class="form-control" value="<?php echo  $row->first_name;?>" id="exampleInputEmail1" placeholder="Enter Your Firstname">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Last Name</label>
-                    <input type="text" name="lname" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Lastname">
+                    <input type="text" name="lname" class="form-control" value="<?php echo  $row->last_name;?>" id="exampleInputPassword1" placeholder="Enter Your Lastname">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Birthday</label>
-                    <input type="date" name="dob" class="form-control" id="exampleInputPassword1" >
+                    <input type="date" name="dob" class="form-control" value="<?php echo  $row->birthdate;?>"  id="exampleInputPassword1" >
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Notes</label>
-                    <textarea name="notes"  class="form-control" id="" rows="5" ></textarea>
+                    <textarea name="notes"  class="form-control" id="" rows="5" ><?php echo  $row->notes;?> </textarea>
                   </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Photo</label>
-                  <input type="file" name="photo">
-                  </div>
-
                  
                   </div>
-                
+                </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="update">Update</button>
                 </div>
               </form>
             </div>
@@ -164,7 +159,7 @@ if(!isset($_SESSION['loggedin'])){
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<!-- <script src="../dist/js/demo.js"></script> -->
+<script src="../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <!-- <script>
 $(function () {

@@ -7,35 +7,26 @@
 </head>
 <body>
     <h3>Login Registration Form</h3>
-    <?php  
-
-   if(isset($_POST['submit'])){
-
-    $errors = array();
-    $name=$_POST['username'];
-    if(strlen($name)<4||strlen($name)>8){
-        $errors[] = "user name must be between 4 to 8 ";
-
-    }
-
-    $email = $_POST['email'];
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-        $errors[] = "Email is not valid";
-    }
-    if(count($errors)>0){
-        echo"<ul>";
-        foreach($errors as $error){
-            echo "<li>" . $error . "</li>";
-            
-
-    }
-    echo"</ul>";
-        }else{
-            echo $name ."<br>";
-            echo $email;
+    <?php 
+    if(isset($_POST['submit'])) {
+        $username=$_POST['username'];
+        if(strlen($username)<4||strlen($username)>8===false){
+            echo "Username must be 4 to 8 digit";
         }
- 
-    }  
+        if(strpos($username,"@")===false){
+            echo"<br>";
+         
+            echo" Username must use @ symbol";
+
+        }
+      else{
+        echo"Login Successfully";
+
+      }
+       }
+       
+    
+
 
    
     
@@ -45,8 +36,10 @@
 
 
     <form action="" method="POST">
-        <input type="text" name="username" placeholder="Enter Your Name"><br>
-        <input type="text" name="email" placeholder="Enter Your Email"><br>
+        Username:
+        <input type="text" name="username" ><br><br>
+        Password:
+        <input type="password" name="password" ><br>
        
         <input type="submit" name="submit" value="submit">
     </form>

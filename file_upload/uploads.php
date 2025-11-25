@@ -16,7 +16,7 @@
             
             $tempfile = $_FILES['myfile']['tmp_name'];
             $filesize = $_FILES['myfile']['size'];//Byte
-            $maxsize = 108576; //1mb
+            $maxsize = 1024*400; //1mb
           $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
           $allowedtypes =["jpg" ,"jpeg" ,"png"];

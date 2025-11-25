@@ -1,4 +1,14 @@
-<?php include_once("../inc/config.php"); ?>
+<?php
+ include_once("../inc/config.php"); 
+ session_start();
+
+if(!isset($_SESSION['loggedin'])){
+  header("Location:index.php");
+
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,13 +65,22 @@
           <div class="col-12">
            
             <!-- /.card -->
+          <?php
+         
+          if(isset($_SESSION['msg'])){
+            echo '<div class="alert alert-success">'. $_SESSION['msg'].'</div>';
+          unset($_SESSION['msg']);
+           
 
+          }
+          ?>
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
-                
+                   <a href=""><p class="text-right" >New</p></a>
+
               </div>
-             <a href=""><p class="text-right" >New</p></a>
+             
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -88,7 +107,13 @@
                     </td>
                     <td><?php echo $row->last_name ?></td>
                     <td> <?php echo $row->birthdate ?></td>
-                    <td>X</td>
+                    <td class="text-center">
+                      <a href="student-edit.php?stid=<?php echo $row->employeeID;?>"><i class="fas fa-edit"></i></a>
+                      &nbsp;
+                     <a onclick=" return confirm('Are You Sure To Delete')" href="student_delete.php?stid=<?php echo $row->employeeID;?>"> <i class="fas fa-trash"></i></a>
+
+                    
+                    </td>
                   </tr>
                 <?php endwhile; ?>
                   </tbody>
