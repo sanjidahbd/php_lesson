@@ -1,14 +1,11 @@
-<?php 
-include("db_config.php");
-if(isset($_GET['id'])){
-$sql="DELETE FROM manufacturer WHERE id=$id";
+<
+<?php
 
-if ($db->query($sql)){
-    echo "Suceess";
-}else{
-   echo "unsucess";
-}
-header("manufacturer_entry.php");
-}
+
+$id= $_GET['id'];
+$sql="DELETE FROM  manufacturer  WHERE id='$id'";
+include_once("db_config.php");
+$db->query($sql);
+header("Location:manufacturer_entry.php");
 
 ?>

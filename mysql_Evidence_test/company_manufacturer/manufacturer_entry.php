@@ -64,9 +64,12 @@
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['name']; ?></td>
     <td><?php echo $row['address'] ?></td>
-    <td><a href="manufacturer_entry.php?id=<?php echo $row['id']?>">DELETE</a></td>
+
+       <td><a onclick=" return confirm('Are You Sure To Delete')" href="deleted_manufacturer.php?id=<?php echo $row['id'];?>">Delete</a></td>
     </tr>
-    <?php endwhile;?>
+    <?php endwhile; ?>
     </table>
+    <a href="product_view.php">Product View</a>
+
 </body>
 </html>
